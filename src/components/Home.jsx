@@ -1,7 +1,10 @@
 import Banner from "./Banner";
 import BistroBoss from "./BistroBoss";
 import Category from "./Category";
-import PopulerMenu from "./PopulerMenu";
+import ChefRecommends from "./ChefRecommends";
+import Featured from "./Featured";
+import PopularMenu from "./PopularMenu";
+import Testimonials from "./Testimonials";
 
 
 const Home = () => {
@@ -10,7 +13,10 @@ const Home = () => {
             <Banner></Banner>
             <Category></Category>
             <BistroBoss></BistroBoss>
-            <PopulerMenu></PopulerMenu>
+            <PopularMenu></PopularMenu>
+            <ChefRecommends></ChefRecommends>
+            <Featured></Featured>
+            <Testimonials></Testimonials>
         </div>
     );
 };
