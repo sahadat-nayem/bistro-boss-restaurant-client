@@ -2,7 +2,10 @@ import SectionTitle from "../shared/SectionTitle";
 import titleImg from "../assets/menu/salad-bg.jpg"
 
 
-const ChefRecommends = () => {
+const ChefRecommends = ({item}) => {
+
+    const {name, recipe, image, price} = item;
+
     return (
         <section className="mb-10 max-w-screen-md mx-auto">
             <div className="max-w-screen-md mx-auto">
