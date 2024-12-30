@@ -5,16 +5,16 @@ import { HiMiniShoppingCart } from "react-icons/hi2";
 const Navbar = () => {
 
     const links = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink>CONTACT us</NavLink></li>
-        <li><NavLink>DASHBOARD</NavLink></li>
-        <li><NavLink>Our Menu</NavLink></li>
-        <li><NavLink>Our Shop</NavLink></li>
+        <NavLink className="hover:text-yellow-400 font-semibold" to="/">Home</NavLink>
+        <NavLink className="hover:text-yellow-400 font-semibold">CONTACT us</NavLink>
+        <NavLink className="hover:text-yellow-400 font-semibold">DASHBOARD</NavLink>
+        <NavLink className="hover:text-yellow-400 font-semibold" to="/menu">Our Menu</NavLink>
+        <NavLink className="hover:text-yellow-400 font-semibold">Our Shop</NavLink>
     </>
 
     return (
         <>
-            <div className="navbar bg-black text-white bg-opacity-15 fixed w-full z-[100]">
+            <div className="navbar bg-black text-white bg-opacity-30 fixed w-full z-[100]">
                 <div className="navbar-start">
                     <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,7 +41,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end gap-3">
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu menu-horizontal px-1 gap-7">
                         {links}
                     </ul>
                 </div>

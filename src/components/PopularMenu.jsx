@@ -29,9 +29,6 @@ const PopularMenu = () => {
             <div className="text-center my-8">
                 <button className="btn btn-link text-black">View Full  Menu</button>
             </div>
-            <div className="max-w-screen-md mx-auto">
-                <p className="bg-black text-white text-center py-10 font-semibold">Call Us: +88 01612844066</p>
-            </div>
         </section>
     );
 };
