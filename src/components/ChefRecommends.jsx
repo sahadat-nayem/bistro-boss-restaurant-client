@@ -2,9 +2,7 @@ import SectionTitle from "../shared/SectionTitle";
 import titleImg from "../assets/menu/salad-bg.jpg"
 
 
-const ChefRecommends = ({item}) => {
-
-    const {name, recipe, image, price} = item;
+const ChefRecommends = () => {
 
     return (
         <section className="mb-10 max-w-screen-md mx-auto">
@@ -16,7 +14,7 @@ const ChefRecommends = ({item}) => {
                 subHeading={"---Should Try---"}
             ></SectionTitle>
             <div className="md:flex gap-4">
-                <div className="card   shadow-xl rounded-none bg-gray-100">
+                <div className="card  shadow-xl rounded-none bg-gray-100">
                     <figure>
                         <img
                         src={titleImg}

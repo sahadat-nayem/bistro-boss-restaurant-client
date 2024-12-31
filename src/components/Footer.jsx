@@ -3,7 +3,7 @@
 const Footer = () => {
     return (
         <footer>
-            <div className="footer bg-neutral text-neutral-content p-10">
+            <div className="footer bg-neutral text-neutral-content p-10 mt-10">
                 <aside>
                     <h3 className="footer-title">CONTACT US</h3>
                     <p>123 ABS Street, Uni 21, Bangladesh</p>
