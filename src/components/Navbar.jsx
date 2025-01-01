@@ -48,7 +48,7 @@ const Navbar = () => {
                 <div className="bg-green-800 rounded-full p-3">
                     <HiMiniShoppingCart />
                 </div>
-                    <a className="btn">Button</a>
+                    <NavLink to="/login" className="hover:text-yellow-400 font-semibold pr-5">Login</NavLink>
                 </div>
             </div>
         </>
