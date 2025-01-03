@@ -1,20 +1,22 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import coverImg from "../assets/others/authentication2.png";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
+// import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-  const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
-
-  const { user, loading, signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  // const [showPassword, setShowPassword] = useState(false);
+  const { signIn } = useContext(AuthContext);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -29,11 +31,27 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: "User Login successfully",
+      });
+      navigate(location?.state ? location.state : "/");
     });
   };
 
-  const handleValidateCaptcha = () => {
-    const user_captcha_value = captchaRef.current.value;
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
     if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
     } else {
@@ -70,12 +88,19 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
+                  // type={showPassword ? "text" : "password"}
                   type="password"
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
                   required
                 />
+                {/* <button
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="btn btn-xs absolute right-10 top-44"
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </button> */}
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
@@ -87,23 +112,22 @@ const Login = () => {
                   <LoadCanvasTemplate />
                 </label>
                 <input
-                  ref={captchaRef}
+                  onBlur={handleValidateCaptcha}
                   type="text"
                   name="captcha"
                   placeholder="type the text you see above"
                   className="input input-bordered"
                   required
                 />
-                <button
-                  onClick={handleValidateCaptcha}
+                {/* <button
                   className="btn btn-outline btn-xs mt-3"
                 >
                   Validate
-                </button>
+                </button> */}
               </div>
               <div className="form-control mt-6">
                 <input
-                  className="btn text-white bg-[#D1A054]"
+                  className="btn text-white bg-[#d19f54ce] hover:bg-[#D1A054]"
                   disabled={disabled}
                   type="submit"
                   value="Login"
