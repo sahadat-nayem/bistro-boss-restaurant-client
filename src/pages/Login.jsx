@@ -18,6 +18,8 @@ const Login = () => {
   // const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useContext(AuthContext);
 
+  // const from = location?.state?.from?.pathname || "/";
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -126,6 +128,7 @@ const Login = () => {
                 </button> */}
               </div>
               <div className="form-control mt-6">
+                {/* TODO: apply disabled for captcha */}
                 <input
                   className="btn text-white bg-[#d19f54ce] hover:bg-[#D1A054]"
                   disabled={disabled}

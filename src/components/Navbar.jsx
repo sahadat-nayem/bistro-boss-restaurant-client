@@ -2,21 +2,21 @@ import { NavLink } from "react-router-dom";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
-import userIcon from "../assets/icon/user-removebg-preview.png"
+import userIcon from "../assets/icon/user-removebg-preview.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   console.log(user);
 
-//   const handleLogOut = () => {
-//     logOut()
-//       .then(() => {
-//         // console.log("Logged Out");
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   };
+  //   const handleLogOut = () => {
+  //     logOut()
+  //       .then(() => {
+  //         // console.log("Logged Out");
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   };
 
   const links = (
     <>
@@ -75,13 +75,17 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 gap-7">{links}</ul>
           </div>
-          <div className="bg-green-800 rounded-full p-3">
-            <HiMiniShoppingCart />
-          </div>
+          {/* <div className="bg-green-800 rounded-full p-3">
+            
+          </div> */}
+          <button className="btn relative bg-green-800 rounded-full p-3 text-white lg:mr-5">
+          <HiMiniShoppingCart />
+            <div className="badge badge-secondary absolute top-0 left-5">+99</div>
+          </button>
           {user && user?.email ? (
             <button
               onClick={logOut}
-              className="hover:text-yellow-400 font-semibold pr-5"
+              className="hover:text-yellow-400 font-semibold"
             >
               Log Out
             </button>
@@ -95,7 +99,7 @@ const Navbar = () => {
           )}
           <div className="">
             {user && user?.email ? (
-              <div className="group relative">
+              <div className="group relative lg:hidden">
                 <img
                   className="size-12 rounded-full  border-2 to-blue-900"
                   src={user?.photoURL}
