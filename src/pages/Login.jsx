@@ -18,7 +18,7 @@ const Login = () => {
   // const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useContext(AuthContext);
 
-  // const from = location?.state?.from?.pathname || "/";
+  // const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -49,6 +49,8 @@ const Login = () => {
         title: "User Login successfully",
       });
       navigate(location?.state ? location.state : "/");
+      console.log(location.state);
+      
     });
   };
 

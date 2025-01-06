@@ -1,12 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
 import userIcon from "../assets/icon/user-removebg-preview.png";
+import useCart from "../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+  const [cart] = useCart();
 
   //   const handleLogOut = () => {
   //     logOut()
@@ -78,10 +79,10 @@ const Navbar = () => {
           {/* <div className="bg-green-800 rounded-full p-3">
             
           </div> */}
-          <button className="btn relative bg-green-800 rounded-full p-3 text-white lg:mr-5">
+          <Link to="/dashboard/cart" className="btn relative bg-green-800 rounded-full p-3 text-white lg:mr-5">
           <HiMiniShoppingCart />
-            <div className="badge badge-secondary absolute top-0 left-5">+99</div>
-          </button>
+            <div className="badge badge-secondary absolute top-0 left-5">+{cart.length}</div>
+          </Link>
           {user && user?.email ? (
             <button
               onClick={logOut}

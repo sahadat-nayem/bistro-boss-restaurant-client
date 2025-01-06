@@ -1,7 +1,9 @@
 import Swal from "sweetalert2";
 import UseAuth from "../../hooks/UseAuth";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
+
 
 
 
@@ -11,10 +13,13 @@ const FootCard = ({item}) => {
     const {user} = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxiosSecure();
+    const [, refetch] = useCart();
 
-    const handleAddToCart = food => {
-        if(user && user.emil){
-            // TODO: Sand cart item to database
+    const handleAddToCart = () => {
+        if(user && user.email){
+            // Sand cart item to database
+            
             const cartItem = {
                 menuId : _id,
                 email : user.email,
@@ -22,7 +27,7 @@ const FootCard = ({item}) => {
                 image,
                 price
             }
-            axios.post('http://localhost:5000/carts', cartItem)
+            axiosSecure.post('/carts', cartItem)
             .then(res =>{
                 console.log(res.data);
                 if(res.data.insertedId){
@@ -33,6 +38,8 @@ const FootCard = ({item}) => {
                         showConfirmButton: false,
                         timer: 1500
                       });
+                      // refetch cart to update the cart items count
+                        refetch();
                 }
                 
             })
@@ -68,7 +75,7 @@ const FootCard = ({item}) => {
                         <h2 className="card-title">{name}</h2>
                         <p>{recipe}</p>
                         <div className="card-actions">
-                        <button onClick={() => handleAddToCart(item)} className="btn btn-outline text-[#BB8506] bg-gray-200 border border-b-2 uppercase">add to cart</button>
+                        <button onClick={handleAddToCart} className="btn btn-outline text-[#BB8506] bg-gray-200 border border-b-2 uppercase">add to cart</button>
                         </div>
                     </div>
             </div>   
