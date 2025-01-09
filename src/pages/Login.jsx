@@ -9,6 +9,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import SocialLogin from "./SocialLogin";
 // import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
@@ -129,7 +130,7 @@ const Login = () => {
                   Validate
                 </button> */}
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control mt-6 gap-3">
                 {/* TODO: apply disabled for captcha */}
                 <input
                   className="btn text-white bg-[#d19f54ce] hover:bg-[#D1A054]"
@@ -137,6 +138,7 @@ const Login = () => {
                   type="submit"
                   value="Login"
                 />
+                <SocialLogin></SocialLogin>
               </div>
               <p className="text-[#D1A054] text-center font-semibold">
                 <small>

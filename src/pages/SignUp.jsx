@@ -5,15 +5,18 @@ import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import SocialLogin from "./SocialLogin";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser, updateUserProfile} = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
@@ -24,17 +27,26 @@ const SignUp = () => {
         updateUserProfile({
           displayName: data.name,
           photoURL: data.photo,
-        })
-          .then(() => {
-            reset();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "User created successfully",
-              showConfirmButton: false,
-              timer: 1500
-            });
-            navigate("/");
+        });
+        // create user entry in the database
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        };
+        axiosPublic
+          .post("/users", userInfo)
+          .then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User created successfully.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -147,12 +159,13 @@ const SignUp = () => {
                   </a>
                 </label>
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control mt-6 gap-3">
                 <input
                   className="btn text-white bg-[#D1A054]"
                   type="submit"
                   value="Sign Up"
                 />
+                <SocialLogin></SocialLogin>
               </div>
               <p className="text-[#D1A054] text-center font-semibold">
                 <small>
