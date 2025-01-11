@@ -1,7 +1,6 @@
 import {
   FaAd,
   FaBook,
-  FaCalendar,
   FaEnvelope,
   FaHome,
   FaList,
@@ -13,6 +12,7 @@ import {
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
+import { IoWallet } from "react-icons/io5";
 
 const Dashboard = () => {
   const [card] = useCart();
@@ -67,9 +67,9 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/reservation">
-                  <FaCalendar></FaCalendar>
-                  Reservation
+                <NavLink to="/dashboard/paymentHistory">
+                <IoWallet></IoWallet>
+                  Payment History
                 </NavLink>
               </li>
               <li>
@@ -85,9 +85,9 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/bookings">
+                <NavLink to="/dashboard/history">
                   <FaList></FaList>
-                  My Bookings
+                  Payment Real History
                 </NavLink>
               </li>
             </>

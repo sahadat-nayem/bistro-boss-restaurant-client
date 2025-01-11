@@ -22,6 +22,10 @@ import Cart from "./pages/cart/Cart";
 import AllUsers from "./pages/Doshboard/AllUsers";
 import AddItems from "./pages/Doshboard/AddItems";
 import AdminRoute from "./routes/AdminRoute";
+import ManageItem from "./pages/Doshboard/ManageItem";
+import UpdateItem from "./pages/Doshboard/UpdateItem";
+import Payment from "./pages/Doshboard/Payment/Payment";
+import PaymentHistory from "./pages/Doshboard/PaymentHistory";
 
 const queryClient = new QueryClient();
 
@@ -69,10 +73,27 @@ const router = createBrowserRouter([
         path: 'cart',
         element: <Cart></Cart>
       },
+      {
+        path: 'payment',
+        element: <Payment></Payment>
+      },
+      {
+        path: 'paymentHistory',
+        element: <PaymentHistory></PaymentHistory>
+      },
       // admin routes
       {
         path: 'addItems',
         element: <AdminRoute><AddItems></AddItems></AdminRoute>
+      },
+      {
+        path: 'manageItems',
+        element: <AdminRoute><ManageItem></ManageItem></AdminRoute>
+      },
+      {
+        path: 'updateItem/:id',
+        element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
       },
       {
         path: 'users',
